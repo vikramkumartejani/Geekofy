@@ -8,9 +8,13 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <Logo/>
-      <Filters/>
-      <ServicesBox/>
+      <div className="md:block hidden">
+        <Logo />
+      </div>
+      <Filters />
+      <div className="md:block hidden">
+        <ServicesBox />
+      </div>
       <Footer />
     </div>
   );

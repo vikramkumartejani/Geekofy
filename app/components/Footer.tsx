@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
           <Link
             key={index}
             href={link.href}
-            className="text-black text-base leading-[16.94px] font-normal tracking-[0.02em] hover:underline underline-offset-4 transition-all duration-200"
+            className="text-black text-sm sm:text-base leading-[16.94px] font-normal tracking-[0.02em] hover:underline underline-offset-4 transition-all duration-200"
           >
             {link.label}
           </Link>

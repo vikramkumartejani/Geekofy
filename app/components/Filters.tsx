@@ -91,7 +91,7 @@ const Filters = () => {
     }
 
     return (
-        <div className="pt-10 md:pt-[50px] pb-[60px] md:pb-[80px] max-w-[700px] mx-auto w-full px-4">
+        <div className="pt-10 md:pt-[50px] pb-[200px] md:pb-[80px] max-w-[700px] mx-auto w-full px-4">
             <div
                 className="relative pl-[15px] md:pl-0 pr-[15px] flex md:items-center justify-between md:flex-row py-5 md:py-0 flex-col md:min-h-[58px] gap-5 md:gap-0 rounded-md border border-[#00000033]"
                 style={{ boxShadow: "0px 2px 8px 0px #00000030" }}
