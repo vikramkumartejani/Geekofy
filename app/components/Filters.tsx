@@ -130,7 +130,7 @@ const Filters = () => {
                     }}
                 />
 
-                <button className="ml-0 h-[36px] min-w-[54px] bg-primary-blue text-white rounded-md">Go</button>
+                <button className="ml-0 h-[36px] min-w-[56px] bg-primary-blue text-white rounded-md">Go</button>
             </div>
         </div>
     )

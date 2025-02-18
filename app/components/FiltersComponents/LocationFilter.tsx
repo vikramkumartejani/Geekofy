@@ -23,7 +23,7 @@ const LocationFilter: FC<LocationFilterProps> = ({
                 <input
                     type="text"
                     placeholder="Find My Location"
-                    className="w-full outline-none text-black/80 placeholder:text-black/50 text-base !font-medium leading-[20px] bg-transparent"
+                    className="w-full outline-none text-black/80 placeholder:text-black/50 text-base !font-medium leading-[20px] bg-transparent pr-2"
                     value={location}
                     onChange={(e) => onLocationChange(e.target.value)}
                     onClick={onToggle}

@@ -17,13 +17,15 @@ interface ServiceFilterProps {
 
 const ServiceFilter: FC<ServiceFilterProps> = ({ services, selectedService, isOpen, onToggle, onSelect }) => {
     return (
-        <div className="relative md:px-5 min-w-[180px]">
+        <div className="relative md:px-4 min-w-[180px]">
             <button
                 className={`w-full flex items-center justify-between gap-2 text-left text-base !font-medium leading-[20px] focus:outline-none ${selectedService ? "text-black/80" : "text-black/50 text-nowrap"
                     }`}
                 onClick={onToggle}
             >
-                {selectedService || "Select Service"}
+                <span className="line-clamp-1">
+                    {selectedService || "Select Service"}
+                </span>
                 <Image src="/assets/icons/drop-down-arrow.svg" alt="drop-down-arrow" width={14} height={7} />
             </button>
 

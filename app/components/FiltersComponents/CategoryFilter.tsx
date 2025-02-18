@@ -16,13 +16,15 @@ interface CategoryFilterProps {
 
 const CategoryFilter: FC<CategoryFilterProps> = ({ categories, selectedCategory, isOpen, onToggle, onSelect }) => {
     return (
-        <div className="relative md:px-5 min-w-[200px]">
+        <div className="relative md:px-4 min-w-[200px]">
             <button
                 className={`w-full flex items-center justify-between gap-5 text-left text-base !font-medium leading-[20px] focus:outline-none ${selectedCategory ? "text-black/80" : "text-black/50 text-nowrap"
                     }`}
                 onClick={onToggle}
             >
-                {selectedCategory || "Select Category"}
+                <span className="line-clamp-1">
+                    {selectedCategory || "Select Category"}
+                </span>
                 <Image src="/assets/icons/drop-down-arrow.svg" alt="drop-down-arrow" width={14} height={7} />
             </button>
 
