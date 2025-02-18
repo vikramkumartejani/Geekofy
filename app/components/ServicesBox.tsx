@@ -44,13 +44,15 @@ const ServicesBox: React.FC = () => {
     return (
         <div className="max-w-[443px] px-4 mx-auto w-full grid grid-cols-2 sm:grid-cols-4 gap-12 pb-[100px] md:pb-[272px]">
             {services.map((service, index) => (
-                <div key={index} className="text-center flex flex-col gap-2.5 items-center">
-                    <Image
-                        src={service.icon}
-                        alt={service.alt}
-                        width={service.width}
-                        height={service.height}
-                    />
+                <div key={index} className="text-center flex flex-col gap-2 items-center">
+                    <div className="w-[50px] h-[50px] flex items-start justify-center">
+                        <Image
+                            src={service.icon}
+                            alt={service.alt}
+                            width={service.width}
+                            height={service.height}
+                        />
+                    </div>
                     <h3 className="text-black-60 text-sm font-normal">{service.title}</h3>
                 </div>
             ))}
