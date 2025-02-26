@@ -28,12 +28,16 @@ const Modal = ({
           <Box
             onClick={(e) => e.stopPropagation()}
             className={
-              "absolute left-[50%] top-[50%] max-h-[90vh] min-h-[200px] min-w-[400px] max-w-[846px] translate-x-[-50%] translate-y-[-50%] overflow-auto " +
+              "absolute left-[50%] top-[50%] max-h-[90vh] min-h-[200px] min-w-[300px] max-w-[846px] translate-x-[-50%] translate-y-[-50%] overflow-auto " +
               boxClassName
             }
             paddings="none"
             style={boxStyle}
           >
+            {/* <div
+              onClick={onClose}
+              className="absolute top-2 right-4 w-[16px] h-[16px] bg-black "
+            /> */}
             {children}
           </Box>
         </div>

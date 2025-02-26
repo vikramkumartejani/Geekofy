@@ -32,11 +32,11 @@ const SignInModal = ({
   };
   return (
     <Modal
-      boxClassName=" w-[460px] "
+      boxClassName=" w-[90%] w-[460px] max-w-[460px] "
       isOpen={isOpen}
       onClose={() => setIsOpen((e) => !e)}
     >
-      <div className=" py-[20px] px-[40px] ">
+      <div className=" py-[20px] px-[20px] sm:px-[40px] ">
         <h2 className=" text-[#000000B2] mb-[30px] text-center text-[24px] font-medium ">
           Hi, Welcome Back! 👋
         </h2>
@@ -77,15 +77,19 @@ const SignInModal = ({
             onChange={(value) => setFormData({ ...formData, password: value })}
           />
         </div>
-        <div className=" flex justify-between items-center gap-2 mb-[50px]">
+        <div className=" flex justify-between flex-wrap-reverse items-center sm:gap-2 gap-4 mb-[30px] sm:mb-[50px]">
           <div>
             <Checkbox label="Remember Password" />
           </div>
-          <Link className=" text-[#E82327] font-medium text-[14px] " href={""}>
+          <Link className=" text-[#E82327] font-medium text-[12px] " href={""}>
             Forgot Password?
           </Link>
         </div>
-        <Button onClick={handleSubmit} className="w-full mb-[50px]" size="lg">
+        <Button
+          onClick={handleSubmit}
+          className="w-full mb-[30px] sm:mb-[50px]"
+          size="lg"
+        >
           Login
         </Button>
         <div className="flex items-center justify-center gap-[4px]">

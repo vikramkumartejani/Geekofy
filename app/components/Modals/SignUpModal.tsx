@@ -36,11 +36,11 @@ const SignUpModal = ({
 
   return (
     <Modal
-      boxClassName=" w-[460px] "
+      boxClassName=" w-[90%] sm:w-[460px] max-w-[460px]  "
       isOpen={isOpen}
       onClose={() => setIsOpen((e) => !e)}
     >
-      <div className=" py-[20px] px-[40px] ">
+      <div className=" py-[20px] sm:px-[40px] px-[20px] ">
         <h2 className=" text-[#000000B2] mb-[30px] text-center text-[24px] font-medium ">
           Create an account
         </h2>
@@ -57,7 +57,7 @@ const SignUpModal = ({
           <p className=" text-[#CFCFCF] text-sm font-semibold ">OR</p>
           <div className=" w-full h-[1px] bg-[#CFCFCF] " />
         </div>
-        <div className="flex  justify-center mb-[20px]  gap-[24px]">
+        <div className="flex  justify-center mb-[20px] gap-2 sm:gap-[24px]">
           <Input
             value={formData.firstName}
             onChange={(e) =>
@@ -99,7 +99,7 @@ const SignUpModal = ({
             Minimum 6 characters (Mix of Uppercase, Lowercase and Number)
           </p>
         </div>
-        <div className="mb-[50px]">
+        <div className=" mb-[30px] sm:mb-[50px]">
           <Checkbox
             checked={formData.agreed}
             onChange={(checked) =>
@@ -123,7 +123,7 @@ const SignUpModal = ({
           />
         </div>
         <Button
-          className="w-full mb-[50px] disabled:border-[#00000000]"
+          className="w-full mb-[30px] sm:mb-[50px] disabled:border-[#00000000]"
           size="lg"
           disabled={!formData.agreed}
           onClick={handleSubmit}
@@ -132,7 +132,7 @@ const SignUpModal = ({
         </Button>
 
         <div className="flex items-center justify-center gap-[4px]">
-          <p className=" text-[#666666] font-medium text-[16px] ">
+          <p className=" text-[#666666] font-medium sm:text-[16px] text-[14px] ">
             Already have an account?
           </p>
           <Button

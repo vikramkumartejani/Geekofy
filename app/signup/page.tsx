@@ -84,17 +84,19 @@ export default function Home() {
       {/* Modal ends */}
 
       <div
-        className=" pb-[160px] "
+        className=" pb-[180px] md:pb-[160px] bg-right-top sm:bg-center"
         style={{
           backgroundImage: ` url(${bg.src}) `,
         }}
       >
         {/* Header */}
-        <header className="w-[88%] max-w-[1340px] py-[14px] mb-[66px] mx-auto flex items-center justify-between">
-          <Link href="/" className="text-3xl font-bold text-[#0088ff]">
-            <Image src={logo} alt="" />
-          </Link>
-          <div className="space-x-4">
+        <header className=" w-[88%] max-w-[1340px] py-[20px] md:py-[14px] mb-[40px] md:mb-[66px] mx-auto flex items-center md:justify-between justify-center">
+          <div>
+            <Link href="/" className="text-3xl font-bold text-[#0088ff]">
+              <Image src={logo} alt="" />
+            </Link>
+          </div>
+          <div className="space-x-4 hidden md:block">
             <Button
               variant="SEC"
               size="sm"
@@ -104,7 +106,7 @@ export default function Home() {
               Log In
             </Button>
             <Button
-              className=" px-[20px] "
+              className=" w-[170px] px-[20px] "
               size="sm"
               onClick={() => setIsOpenSignUp(true)}
             >
@@ -114,22 +116,22 @@ export default function Home() {
         </header>
 
         {/* Main Content */}
-        <main className="w-[88%] max-w-[1340px] mx-auto text-center">
+        <main className=" w-[88%] max-w-[1340px] mx-auto text-center">
           <h1 className="text-[42px] md:text-5xl font-semibold text-white mb-8">
             The Ultimate Place for <span className="text-[#ffd700]">Geeks</span>{" "}
             to Attract Clients.
           </h1>
 
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
             <Button
               onClick={() => setIsOpenSignUp(true)}
-              className="bg-[#0088ff] hover:bg-[#0088ff]/90 text-lg "
+              className=" w-[300px] md:w-[270px] bg-[#0088ff] hover:bg-[#0088ff]/90 text-lg "
             >
               Register your Business
             </Button>
             <Button
               variant="SEC"
-              className="text-white bg-transparent active:bg-white/20 border-white hover:bg-white/10 text-lg "
+              className="w-[300px] text-white bg-transparent active:bg-white/20 border-white hover:bg-white/10 text-lg "
               onClick={() => setIsOpenLogIn(true)}
             >
               Already Listed? Login now
@@ -139,17 +141,19 @@ export default function Home() {
       </div>
 
       {/* Features Card */}
-      <div className="w-[88%] max-w-[1340px] mx-auto mt-[-116px] text-center">
-        <div className="bg-[linear-gradient(270deg,#EEEEEE_5.55%,#FFFFFF_48.97%,#FAFAFA_96%)] pt-[36px] pb-[56px] px-[46px] w-[90%] max-w-[1050] shadow-lg mx-auto">
-          <h2 className="text-[34px] font-medium text-[#000000]">
+      <div className=" w-[90%] sm:w-[88%] max-w-[1340px] mx-auto mt-[-116px] text-center">
+        <div className="bg-[linear-gradient(270deg,#EEEEEE_5.55%,#FFFFFF_48.97%,#FAFAFA_96%)] pt-[20px] sm:pt-[36px] sm:pb-[56px] pb-[30px]  px-[12px] sm:px-[20px] lg:px-[46px] w-[100%] lg:w-[90%] max-w-[1050] shadow-lg mx-auto">
+          <h2 className=" text-3xl sm:text-[34px] font-medium text-[#000000]">
             Get started with online discovery
           </h2>
-          <div className="w-full h-[1px] bg-[#E0E0E0] mt-[20px] mb-[40px] " />{" "}
-          <div className="grid md:grid-cols-2 gap-6 px-[40px] ">
+          <div className="w-full h-[1px] bg-[#E0E0E0] mt-[12px] mb-[20px] sm:mt-[20px] sm:mb-[40px] " />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-[320px_260px] lg:grid-cols-[350px_300px] justify-between  md:gap-4 lg:gap-6 w-[100%] md:w-[90%] mx-auto ">
             {features.map((feature, index) => (
-              <div key={index} className="flex items-center gap-5">
-                <Image src={teck} alt="" />
-                <span className=" text-[22px] text-[#000000CC]">{feature}</span>
+              <div key={index} className="flex items-center gap-3 sm:gap-5">
+                <Image className=" w-4 sm:w-6 " src={teck} alt="" />
+                <span className=" text-[18px] md:text-[20px] lg:text-[22px] text-[#000000CC]">
+                  {feature}
+                </span>
               </div>
             ))}
           </div>
@@ -157,7 +161,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="mt-[105px]">
+      <footer className=" mt-[80px] sm:mt-[105px]">
         <nav className="flex flex-wrap justify-center gap-6 bg-[#D5E8FF80] p-[12px]">
           {navLinks.map((item, i) => (
             <Link
