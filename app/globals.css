@@ -1,24 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", serif;
-  
 }
 
-h1{
+h1 {
   font-family: "Baloo 2", serif;
 }
 
-h2{
+h2 {
   font-family: "Source Sans 3", serif;
+}
+
+/* input css goes here!! */
+
+.input {
+  transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-label {
+  position: absolute;
+  left: 1px;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.focus-label {
+  transform: translateY(-50%) scale(0.8);
+  background: #fff;
+  color: #0084ff;
+  padding: 4px;
 }
