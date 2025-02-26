@@ -123,13 +123,13 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-8">
             <Button
               onClick={() => setIsOpenSignUp(true)}
-              className="bg-[#0088ff] hover:bg-[#0088ff]/90 text-lg px-8"
+              className="bg-[#0088ff] hover:bg-[#0088ff]/90 text-lg "
             >
               Register your Business
             </Button>
             <Button
               variant="SEC"
-              className="text-white bg-transparent active:bg-white/20 border-white hover:bg-white/10 text-lg px-8"
+              className="text-white bg-transparent active:bg-white/20 border-white hover:bg-white/10 text-lg "
               onClick={() => setIsOpenLogIn(true)}
             >
               Already Listed? Login now

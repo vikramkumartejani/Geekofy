@@ -5,6 +5,7 @@ import type React from "react";
 import { useState } from "react";
 import { AlertCircle, Mail, Eye, EyeOff, Search } from "lucide-react";
 import Input from "../components/Element/Input";
+import OTPVeriOtpVerificationModal from "../components/Modals/OtpVerificationModal";
 
 const page = () => {
   const [values, setValues] = useState({
@@ -21,16 +22,50 @@ const page = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
+  const [email, setEmail] = useState("xyz@gmail.com");
+  const [verificationStatus, setVerificationStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+  const [showEditEmailModal, setShowEditEmailModal] = useState(false);
+  const [newEmail, setNewEmail] = useState(email);
+  const [resendCount, setResendCount] = useState(0);
+
   const handleChange =
     (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [field]: e.target.value });
     };
 
+  const handleVerify = (otp: string) => {
+    console.log("Verifying OTP:", otp);
+    // Simulate verification
+    if (otp === "2222") {
+      setVerificationStatus("error");
+    } else {
+      setVerificationStatus("success");
+    }
+  };
+
+  const handleResendCode = () => {
+    console.log("Resending code...");
+    setResendCount((prev) => prev + 1);
+    // Reset verification status
+    setVerificationStatus("idle");
+  };
+
+  const handleEditEmail = () => {
+    setShowEditEmailModal(true);
+  };
+
+  const handleSaveEmail = () => {
+    setEmail(newEmail);
+    setShowEditEmailModal(false);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
         <h1 className="text-2xl font-bold mb-6">Input Component Examples</h1>
-
+        <OTPVeriOtpVerificationModal />
         <div className="grid gap-8">
           {/* Normal Input */}
           <div>
