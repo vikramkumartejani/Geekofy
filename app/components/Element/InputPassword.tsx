@@ -67,7 +67,7 @@ const InputPassword: React.FC<IProps> = ({ InputProps, value, onChange }) => {
         onBlur={() => setIsTyping(false)}
       />
       {isTyping && !allValid && (
-        <div className=" absolute rounded-lg mt-1 bg-white w-full border border-gray-200 p-4 shadow-lg">
+        <div className=" absolute rounded-lg top-[50px] bg-white w-full border border-gray-200 p-4 shadow-lg">
           <div className="space-y-2">
             <ValidationItem
               isValid={validations.uppercase}

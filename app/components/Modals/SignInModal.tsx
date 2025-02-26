@@ -8,13 +8,16 @@ import appleIcon from "../../../public/assets/apple.png";
 import emailIcon from "../../../public/assets/Envelope.svg";
 import Image from "next/image";
 import InputPassword from "../Element/InputPassword";
+import Checkbox from "../Element/CheckBox";
 
 const SignInModal = ({
   isOpen,
   setIsOpen,
+  onSignUpClick,
 }: {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onSignUpClick?: () => void;
 }) => {
   const [formData, setFormData] = useState({
     email: "",
@@ -76,27 +79,31 @@ const SignInModal = ({
         </div>
         <div className=" flex justify-between items-center gap-2 mb-[50px]">
           <div>
-            <Input type="checkbox" label="Remember Password" />
+            <Checkbox label="Remember Password" />
           </div>
           <Link className=" text-[#E82327] font-medium text-[14px] " href={""}>
             Forgot Password?
           </Link>
         </div>
-        <Button
-          onClick={handleSubmit}
-          className="w-full mb-[50px]"
-          size="lg"
-          disabled
-        >
+        <Button onClick={handleSubmit} className="w-full mb-[50px]" size="lg">
           Login
         </Button>
         <div className="flex items-center justify-center gap-[4px]">
           <p className=" text-[#666666] font-medium text-[16px] ">
             Don’t have an account?
           </p>
-          <Link className=" text-[#0084FF] font-medium text-[16px] " href={""}>
+          <Button
+            size="sm"
+            style={{
+              padding: 0,
+              color: "#0084FF",
+              background: "none",
+              border: "none",
+            }}
+            onClick={onSignUpClick}
+          >
             Sign Up
-          </Link>
+          </Button>
         </div>
       </div>
     </Modal>

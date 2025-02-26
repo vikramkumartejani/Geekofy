@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import Modal from ".";
 import Button from "../Element/Button";
 import Input from "../Element/Input";
-import Link from "next/link";
 import emailIcon from "../../../public/assets/Envelope.svg";
 import Image from "next/image";
 
 const ForgetPasswordModal = ({
   isOpen,
   setIsOpen,
+  onSignUpClick,
 }: {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onSignUpClick?: () => void;
 }) => {
   const [email, setEmail] = useState("");
 
@@ -52,9 +53,18 @@ const ForgetPasswordModal = ({
           <p className=" text-[#666666] font-medium text-[16px] ">
             Don’t have an account?
           </p>
-          <Link className=" text-[#0084FF] font-medium text-[16px] " href={""}>
+          <Button
+            size="sm"
+            style={{
+              padding: 0,
+              color: "#0084FF",
+              background: "none",
+              border: "none",
+            }}
+            onClick={onSignUpClick}
+          >
             Sign Up
-          </Link>
+          </Button>
         </div>
       </div>
     </Modal>

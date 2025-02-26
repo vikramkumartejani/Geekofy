@@ -8,9 +8,11 @@ import Checkbox from "../Element/CheckBox";
 const NewPasswordSetup = ({
   isOpen,
   setIsOpen,
+  onSignUpClick,
 }: {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onSignUpClick?: () => void;
 }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -94,9 +96,18 @@ const NewPasswordSetup = ({
           <p className=" text-[#666666] font-medium text-[16px] ">
             Don’t have an account?
           </p>
-          <Link className=" text-[#0084FF] font-medium text-[16px] " href={""}>
+          <Button
+            size="sm"
+            style={{
+              padding: 0,
+              color: "#0084FF",
+              background: "none",
+              border: "none",
+            }}
+            onClick={onSignUpClick}
+          >
             Sign Up
-          </Link>
+          </Button>
         </div>
       </div>
     </Modal>

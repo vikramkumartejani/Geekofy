@@ -13,15 +13,17 @@ import Checkbox from "../Element/CheckBox";
 const SignUpModal = ({
   isOpen,
   setIsOpen,
+  onSignInClick,
 }: {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onSignInClick?: () => void;
 }) => {
   const [formData, setFormData] = useState({
-    firstName: "asd",
-    lastName: "sadf",
-    email: "dsaf",
-    password: "sdf",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
     agreed: false,
   });
 
@@ -133,9 +135,18 @@ const SignUpModal = ({
           <p className=" text-[#666666] font-medium text-[16px] ">
             Already have an account?
           </p>
-          <Link className=" text-[#0084FF] font-medium text-[16px] " href={""}>
+          <Button
+            size="sm"
+            style={{
+              padding: 0,
+              color: "#0084FF",
+              background: "none",
+              border: "none",
+            }}
+            onClick={onSignInClick}
+          >
             Sign In
-          </Link>
+          </Button>
         </div>
       </div>
     </Modal>

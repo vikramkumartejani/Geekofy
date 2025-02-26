@@ -8,6 +8,9 @@ import bg from "../../public/assets/bgImage.png";
 import { useState } from "react";
 import SignUpModal from "../components/Modals/SignUpModal";
 import SignInModal from "../components/Modals/SignInModal";
+import emailIcon from "../../../public/assets/Envelope.svg";
+import Modal from "../components/Modals";
+import Input from "../components/Element/Input";
 import ForgetPasswordModal from "../components/Modals/ForgetPasswordModal";
 import NewPasswordSetup from "../components/Modals/NewPasswordSetup";
 
@@ -16,8 +19,11 @@ interface INavLink {
   href: string;
 }
 export default function Home() {
+  // Modal states
   const [isOpenSignUp, setIsOpenSignUp] = useState(false);
   const [isOpenLogIn, setIsOpenLogIn] = useState(false);
+  const [isOpenForget, setIsOpenForget] = useState(false);
+  const [isOpenSetNewPassword, setIsOpenSetNewPassword] = useState(false);
 
   const features = [
     "Never Pay For Leads Again",
@@ -41,11 +47,41 @@ export default function Home() {
   return (
     <div className="min-h-screen  ">
       {/* Modals */}
-
-      {/* <SignUpModal isOpen={isOpenSignUp} setIsOpen={setIsOpenSignUp} /> */}
-      <NewPasswordSetup isOpen={isOpenSignUp} setIsOpen={setIsOpenSignUp} />
-      {/* <SignInModal isOpen={isOpenLogIn} setIsOpen={setIsOpenLogIn} /> */}
-      <ForgetPasswordModal isOpen={isOpenLogIn} setIsOpen={setIsOpenLogIn} />
+      <SignUpModal
+        isOpen={isOpenSignUp}
+        setIsOpen={setIsOpenSignUp}
+        onSignInClick={() => {
+          setIsOpenSignUp(false);
+          setIsOpenLogIn(true);
+        }}
+      />
+      <SignInModal
+        isOpen={isOpenLogIn}
+        setIsOpen={setIsOpenLogIn}
+        onSignUpClick={() => {
+          setIsOpenLogIn(false);
+          setIsOpenSignUp(true);
+        }}
+      />
+      {/* {Forgot Password Modal} */}
+      <ForgetPasswordModal
+        isOpen={isOpenForget}
+        setIsOpen={setIsOpenForget}
+        onSignUpClick={() => {
+          setIsOpenForget(false);
+          setIsOpenSignUp(true);
+        }}
+      />
+      {/*SetNewPassword  */}
+      <NewPasswordSetup
+        isOpen={isOpenSetNewPassword}
+        setIsOpen={setIsOpenSetNewPassword}
+        onSignUpClick={() => {
+          setIsOpenSetNewPassword(false);
+          setIsOpenSignUp(true);
+        }}
+      />
+      {/* Modal ends */}
 
       <div
         className=" pb-[160px] "

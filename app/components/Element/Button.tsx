@@ -48,7 +48,7 @@ const Button: React.FC<IButtonProps> = ({
   return (
     <button
       type={type}
-      className={` no-underline inline-flex items-center justify-center gap-2 rounded-lg border font-medium transition-all duration-[.1s] ease-in-out disabled:cursor-not-allowed disabled:bg-[#00000066] disabled:text-[#fff] disabled:border-[#00000066] active:translate-y-[2px] shadow-sm  ${btnSizes[size]}
+      className={` no-underline inline-flex items-center justify-center gap-2 rounded-lg border font-medium transition-all duration-[.1s] ease-in-out disabled:cursor-not-allowed disabled:bg-[#00000066] disabled:text-[#fff] disabled:border-[#00000000] active:translate-y-[2px] shadow-sm  ${btnSizes[size]}
       ${btnVarirants[variant]}
       ${className}
       `}

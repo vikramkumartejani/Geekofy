@@ -1,11 +1,11 @@
 "use client";
-import { GenericElements, THPositions } from "@/types";
-import React, { CSSProperties, useMemo, useState } from "react";
 
-type TIntrinsicInputProps = React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->;
+import type React from "react";
+import { useState, useMemo, type CSSProperties } from "react";
+
+type THPositions = "left" | "right";
+type GenericElements = React.ReactNode;
+type TIntrinsicInputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 export interface InputProps extends TIntrinsicInputProps {
   containerStyle?: CSSProperties;
@@ -31,7 +31,7 @@ export interface InputProps extends TIntrinsicInputProps {
 
 const Input: React.FC<InputProps> = ({
   containerStyle,
-  containerClassname,
+  containerClassname = "",
   inputWrapperStyle,
   label,
   labelStyle,
@@ -46,103 +46,129 @@ const Input: React.FC<InputProps> = ({
   inputNextSibling,
   isRequired = false,
   onEnterPress,
-  infoMsgClassName,
-  inputClassName,
+  infoMsgClassName = "",
+  inputClassName = "",
   value,
+  placeholder,
   ...props
 }) => {
   const [focus, setFocus] = useState(false);
+  const [touched, setTouched] = useState(false);
 
   const getIconClasses = (p: THPositions) => {
-    return ` absolute ${p === "left" ? "left-[14px]" : "right-[14px]"}`;
+    return `absolute ${
+      p === "left" ? "left-3" : "right-3"
+    } top-1/2 -translate-y-1/2`;
   };
 
   const _id = props.id || props.name || label;
   const isCb = props.type === "checkbox";
 
-  const inputClasses = useMemo(() => {
-    const dimClasses = isCb ? "w-4 h-4" : " w-[100%] h-[48px]";
-    const baseClasses = ` px-[8px] rounded-[8px] border-[#00000033] disabled:pointer-events-none disabled:bg-[#F9FAFB] disabled:text-[#667085] outline-none shadow-sm border-[1px]  placeholder-[#0000008C] 
-     text-[#101828]  ${
-       errorMsg &&
-       " border-[#00000000] border-[0px] text-[#E82327] placeholder-[#E82327] "
-     } `;
+  const hasError = errorMsg && touched;
+  const isActive = focus || Boolean(value);
 
-    return `${dimClasses} ${baseClasses} ${props.className} `;
-  }, [errorMsg, props.className, isCb]);
+  const containerClasses = useMemo(() => {
+    return `
+      relative w-full
+      ${hasError ? "border border-[#E82327] rounded-lg" : ""}
+      ${containerClassname}
+    `;
+  }, [hasError, containerClassname]);
+
+  const inputClasses = useMemo(() => {
+    const dimClasses = isCb ? "w-4 h-4" : "w-full h-[48px]";
+    const baseClasses = `
+      px-3 rounded-lg transition-all duration-200
+      border
+      placeholder:text-gray-500
+      text-base
+      outline-none
+      disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed
+      ${
+        hasError
+          ? "border-[#E8232700] bg-red-50 text-gray-900 focus:border-[#E8232700]"
+          : "border-gray-300 text-gray-900 focus:border-[#0084FF]"
+      }
+    `;
+    return `${dimClasses} ${baseClasses} ${inputClassName}`;
+  }, [hasError, inputClassName, isCb]);
+
+  const labelClasses = useMemo(() => {
+    return `
+      absolute left-3 transition-all duration-200 pointer-events-none z-10
+      ${isActive ? "text-xs -top-2.5 bg-white px-1" : "text-gray-500 top-3.5"}
+      ${
+        hasError
+          ? "text-[#E82327]"
+          : isActive
+          ? "text-[#0084FF]"
+          : "text-gray-500"
+      }
+      ${touched && !value && isRequired ? "text-[#E82327]" : ""}
+    `;
+  }, [isActive, hasError, touched, value, isRequired]);
+
+  const infoClasses = `mt-1 text-xs text-gray-500 ${infoMsgClassName}`;
 
   return (
-    <div
-      className={`flex w-[100%] flex-col ${containerClassname} ${
-        errorMsg && " border rounded-lg border-[#E82327] "
-      } `}
-      style={containerStyle}
-    >
-      <div style={inputWrapperStyle}>
-        <div
-          className={` ${
-            isCb
-              ? "flex flex-row-reverse justify-end items-center gap-2 "
-              : "relative"
-          } `}
-        >
-          {label && (
-            <label
-              htmlFor={_id}
-              className={`  z-10 ${focus && !isCb && "focus-label"}  ${
-                !isCb && "user-label px-[16px]  "
-              }  `}
+    <div className={containerClasses} style={containerStyle}>
+      <div className="relative" style={inputWrapperStyle}>
+        {label && (
+          <label htmlFor={_id} className={labelClasses} style={labelStyle}>
+            {label}
+            {isRequired && <span className="text-[#E82327] ml-0.5">*</span>}
+          </label>
+        )}
+
+        <div className="relative">
+          {inputPrevSibling}
+
+          <input
+            {...props}
+            id={_id}
+            className={inputClasses}
+            placeholder={focus ? placeholder : ""}
+            value={value}
+            onFocus={(e) => {
+              setFocus(true);
+              props.onFocus?.(e);
+            }}
+            onBlur={(e) => {
+              setFocus(false);
+              setTouched(true);
+              props.onBlur?.(e);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                onEnterPress?.();
+              }
+              props.onKeyDown?.(e);
+            }}
+          />
+
+          {inputNextSibling}
+
+          {iconComp && (
+            <div
+              className={`${getIconClasses(iconPosition)} cursor-pointer`}
+              onClick={onIconClick}
             >
-              {label}
-              {isRequired && (
-                <span className="  text-[#E82327] text-[16px] ml-1 ">*</span>
-              )}
-            </label>
+              {iconComp}
+            </div>
           )}
-          <div className=" relative flex items-center ">
-            <input
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  onEnterPress?.();
-                }
-              }}
-              {...props}
-              id={_id}
-              className={` focus:border-[#0084FF] ${inputClasses} ${inputClassName}`}
-              onFocus={() => setFocus(true)}
-              onBlur={() => {
-                if (value === "") {
-                  setFocus(false);
-                }
-              }}
-            />
-            {inputNextSibling}
-            {iconComp && (
-              <div
-                className={getIconClasses(iconPosition)}
-                onClick={onIconClick}
-              >
-                {iconComp}
-              </div>
-            )}
-            {errorIcon && (
-              <div className={getIconClasses(errorIconPosition)}>
-                {errorIcon}
-              </div>
-            )}
-          </div>
+
+          {errorIcon && hasError && (
+            <div className={getIconClasses(errorIconPosition)}>{errorIcon}</div>
+          )}
         </div>
       </div>
 
-      {infoMsg && (
-        <p className={` ${infoMsgClassName} text-[12px] text-[#929292]`}>
-          {infoMsg}
-        </p>
-      )}
-      {errorMsg && (
-        <p className="text-[#E82327] italic px-3 py-[7px] border-t-[1px] border-[#E82327] bg-[#E8232711] ">
-          {errorMsg}
-        </p>
+      {infoMsg && !errorMsg && <p className={infoClasses}>{infoMsg}</p>}
+
+      {errorMsg && touched && (
+        <div className={"bg-red-50 border-t rounded-b-lg border-[#E82327] px-3 py-1 "}>
+          <p className="text-sm text-[#E82327]">{errorMsg}</p>
+        </div>
       )}
     </div>
   );
