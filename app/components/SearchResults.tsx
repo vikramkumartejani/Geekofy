@@ -1,5 +1,5 @@
 import { ServiceProvider } from "@/types";
-import { ServiceCard } from "./ServiceCard";
+import ServiceCard from "./ServiceCard";
 
 interface SearchResultsProps {
   services: ServiceProvider[];
