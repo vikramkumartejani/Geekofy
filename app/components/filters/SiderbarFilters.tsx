@@ -124,13 +124,11 @@ export function FilterSidebar({
           </div>
         </div>
 
-        {/* Pricing */}
         <div>
           <div className="flex items-center justify-between">
             <TitleWithBorder isBorderBototm={false} title="Pricing" />
             <button
               onClick={() => {
-                setSelectedPriceType(null);
                 onFilterChange({
                   pricing: { type: [], range: [] },
                 });
@@ -141,119 +139,155 @@ export function FilterSidebar({
               Clear
             </button>
           </div>
-          <div className=" flex items-center w-full h-[4px] mb-3 ">
-            <div className=" rounded-[10px] w-[50px] h-[4px] bg-[#0084FF] " />
-            <div className=" flex-1 h-[1px] bg-[#E4E4E4] " />
+          <div className="flex items-center w-full h-[4px] mb-3">
+            <div className="rounded-[10px] w-[50px] h-[4px] bg-[#0084FF]" />
+            <div className="flex-1 h-[1px] bg-[#E4E4E4]" />
           </div>
 
           <div className="space-y-4">
             {/* Flat Fee */}
             <div>
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  // id="flat-fee"
-                  checked={selectedPriceType === "flat"}
-                  onChange={(checked) =>
-                    handlePriceTypeChange(checked ? "flat" : "hourly")
-                  }
-                  label="Flat Fee"
-                />
-              </div>
-              {selectedPriceType === "flat" && (
-                <RadioGroup
-                  value={filters.pricing.range[0]}
-                  onValueChange={(value) =>
-                    onFilterChange({
-                      pricing: {
-                        ...filters.pricing,
-                        range: [value as any],
-                      },
-                    })
-                  }
-                  className="ml-6 mt-2 space-y-2"
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="under-70" id="under-70" />
-                    <Label htmlFor="under-70">Under $70</Label>
+              <Checkbox
+                checked={filters.pricing.type.includes("flat")}
+                onChange={(checked) =>
+                  onFilterChange({
+                    pricing: {
+                      ...filters.pricing,
+                      type: checked
+                        ? [...filters.pricing.type, "flat"]
+                        : filters.pricing.type.filter((t) => t !== "flat"),
+                    },
+                  })
+                }
+                label="Flat Fee"
+              />
+              {filters.pricing.type.includes("flat") && (
+                <div className="ml-6 mt-2 space-y-2">
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      checked={filters.pricing.range.includes("under-70")}
+                      onChange={() =>
+                        onFilterChange({
+                          pricing: {
+                            ...filters.pricing,
+                            range: ["under-70"],
+                          },
+                        })
+                      }
+                      className="w-4 h-4 text-blue-500 border-gray-300 focus:ring-0"
+                    />
+                    <span className="text-[16px] text-[#00000099]">
+                      Under $70
+                    </span>
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      checked={filters.pricing.range.includes("70-100")}
+                      onChange={() =>
+                        onFilterChange({
+                          pricing: {
+                            ...filters.pricing,
+                            range: ["70-100"],
+                          },
+                        })
+                      }
+                      className="w-4 h-4 text-blue-500 border-gray-300 focus:ring-0"
+                    />
+                    <span className="text-[16px] text-[#00000099]">
+                      $70 - $100
+                    </span>
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      checked={filters.pricing.range.includes("over-100")}
+                      onChange={() =>
+                        onFilterChange({
+                          pricing: {
+                            ...filters.pricing,
+                            range: ["over-100"],
+                          },
+                        })
+                      }
+                      className="w-4 h-4 text-blue-500 border-gray-300 focus:ring-0"
+                    />
+                    <span className="text-[16px] text-[#00000099]">
+                      Over $100
+                    </span>
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      placeholder="$ Min"
+                      className="w-20 px-2 py-1 border border-gray-300 rounded text-sm"
+                    />
+                    <input
+                      type="text"
+                      placeholder="$ Max"
+                      className="w-20 px-2 py-1 border border-gray-300 rounded text-sm"
+                    />
+                    <button className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600">
+                      Go
+                    </button>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="70-100" id="70-100" />
-                    <Label htmlFor="70-100">$70 - $100</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="over-100" id="over-100" />
-                    <Label htmlFor="over-100">Over $100</Label>
-                  </div>
-                </RadioGroup>
+                </div>
               )}
             </div>
 
             {/* Hourly Fee */}
             <div>
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  checked={selectedPriceType === "startDate"}
-                  onChange={(checked) =>
-                    handlePriceTypeChange(checked ? "hourly" : null)
-                  }
-                  label="Hourly Fee"
-                />
-              </div>
-              {selectedPriceType === "hourly" && (
-                <RadioGroup
-                  value={filters.pricing.range[0]}
-                  onValueChange={(value) =>
-                    onFilterChange({
-                      pricing: {
-                        ...filters.pricing,
-                        range: [value as any],
-                      },
-                    })
-                  }
-                  className="ml-6 mt-2 space-y-2"
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="under-50" id="under-50" />
-                    <Label htmlFor="under-50">Under $50/hr</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="50-100" id="50-100" />
-                    <Label htmlFor="50-100">$50 - $100/hr</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem
-                      value="over-100-hourly"
-                      id="over-100-hourly"
-                    />
-                    <Label htmlFor="over-100-hourly">Over $100/hr</Label>
-                  </div>
-                </RadioGroup>
-              )}
-            </div>
-            {/* Starts At */}
-            <div>
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  checked={selectedPriceType === "startDate"}
-                  onChange={(checked) =>
-                    handlePriceTypeChange(checked ? "startDate" : null)
-                  }
-                  label="Starts At"
-                />
-              </div>
+              <Checkbox
+                checked={filters.pricing.type.includes("hourly")}
+                onChange={(checked) =>
+                  onFilterChange({
+                    pricing: {
+                      ...filters.pricing,
+                      type: checked
+                        ? [...filters.pricing.type, "hourly"]
+                        : filters.pricing.type.filter((t) => t !== "hourly"),
+                    },
+                  })
+                }
+                label="Hourly Fee"
+              />
             </div>
 
-            {/* Call for pricing*/}
+            {/* Starts At */}
             <div>
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  checked={selectedPriceType === "call"}
-                  onChange={(checked) =>
-                    handlePriceTypeChange(checked ? "hourly" : "flat")
-                  }
-                  label="Hourly Fee"
-                />
-              </div>
+              <Checkbox
+                checked={filters.pricing.type.includes("startDate")}
+                onChange={(checked) =>
+                  onFilterChange({
+                    pricing: {
+                      ...filters.pricing,
+                      type: checked
+                        ? [...filters.pricing.type, "startDate"]
+                        : filters.pricing.type.filter((t) => t !== "startDate"),
+                    },
+                  })
+                }
+                label="Starts At"
+              />
+            </div>
+
+            {/* Call for pricing */}
+            <div>
+              <Checkbox
+                checked={filters.pricing.type.includes("call")}
+                onChange={(checked) =>
+                  onFilterChange({
+                    pricing: {
+                      ...filters.pricing,
+                      type: checked
+                        ? [...filters.pricing.type, "call"]
+                        : filters.pricing.type.filter((t) => t !== "call"),
+                    },
+                  })
+                }
+                label="Call For Pricing"
+              />
             </div>
           </div>
         </div>
