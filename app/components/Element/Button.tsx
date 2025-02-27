@@ -26,8 +26,8 @@ const btnVarirants = {
 
 const btnSizes = {
   xs: " py-[4px] px-[8px] text-[12px]  ",
-  sm: " py-[8px] px-[8px] text-[16px]  ",
-  md: " py-[10px] px-[10px] text-[20px]  ",
+  sm: " py-[8px] px-[8px] text-[14px]  ",
+  md: " py-[10px] px-[10px] text-[16px]  ",
   lg: " py-[14px] px-[14px] text-[28px]  ",
   xlg: " py-[20px] px-[30px] text-[32px]  ",
 };

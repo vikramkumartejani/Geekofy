@@ -30,14 +30,20 @@ export default function Checkbox({
   };
 
   return (
-    <label className={`flex items-center gap-2 ${className}`}>
+    <label className={` group flex items-center gap-2 ${className}`}>
       <input
         type="checkbox"
         checked={checked}
         onChange={handleChange}
-        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer "
       />
-      <span className="text-sm text-gray-600">{label}</span>
+      <span
+        className={`text-[16px] select-none font-medium text-[#00000099] 
+          group-hover:text-[#E6641D] cursor-pointer 
+         `}
+      >
+        {label}
+      </span>
     </label>
   );
 }

@@ -32,7 +32,10 @@ const SignInModal = ({
   };
   return (
     <Modal
-      boxClassName=" w-[90%] w-[460px] max-w-[460px] "
+      boxClassName=" w-[90%] w-[460px] "
+      boxStyle={{
+        maxWidth: "460px",
+      }}
       isOpen={isOpen}
       onClose={() => setIsOpen((e) => !e)}
     >

@@ -13,6 +13,7 @@ import Modal from "../components/Modals";
 import Input from "../components/Element/Input";
 import ForgetPasswordModal from "../components/Modals/ForgetPasswordModal";
 import NewPasswordSetup from "../components/Modals/NewPasswordSetup";
+import Footer from "../components/Footer";
 
 interface INavLink {
   label: string;
@@ -160,25 +161,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className=" mt-[80px] sm:mt-[105px]">
-        <nav className="flex flex-wrap justify-center gap-6 bg-[#D5E8FF80] p-[12px]">
-          {navLinks.map((item, i) => (
-            <Link
-              key={i}
-              href={item.href}
-              className="text-[#000000] hover:text-[#0084FF] transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="w-full bg-[#181F31] p-[12px] ">
-          <p className="text-center text-white text-[16px]">
-            Copyright 2024. All Rights Reserved
-          </p>
-        </div>
-      </footer>
+      {/* footer  */}
+      <Footer />
     </div>
   );
 }

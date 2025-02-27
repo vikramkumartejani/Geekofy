@@ -36,17 +36,19 @@ export function BusinessHoursModal({
 
   return (
     <Modal isOpen={isOpen} onClose={() => onClose()}>
-      <h2>Business Hours - {businessName}</h2>
+      <div className=" p-[10px] ">
+        <h2>Business Hours - {businessName}</h2>
 
-      <div className="grid gap-4 py-4">
-        {days.map(({ key, label }) => (
-          <div key={key} className="grid grid-cols-2 items-center gap-4">
-            <div className="text-sm font-medium">{label}</div>
-            <div className="text-sm text-muted-foreground">
-              {formatHours(hours[key as keyof BusinessHours])}
+        <div className="grid gap-4 py-4">
+          {days.map(({ key, label }) => (
+            <div key={key} className="grid grid-cols-2 items-center gap-4">
+              <div className="text-sm font-medium">{label}</div>
+              <div className="text-sm text-muted-foreground">
+                {formatHours(hours[key as keyof BusinessHours])}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </Modal>
   );

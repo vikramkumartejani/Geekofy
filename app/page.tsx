@@ -6,7 +6,7 @@ import Filters from "./components/Filters";
 
 export default function Home() {
   return (
-    <div>
+    <div id="main">
       <Header />
       <div className="md:block hidden">
         <Logo />
